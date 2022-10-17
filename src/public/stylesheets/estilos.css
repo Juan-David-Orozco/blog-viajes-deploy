@@ -1,0 +1,29 @@
+html {
+  font-size: 14px;
+}
+
+.enlaces-registro{
+  float: right;
+  position: relative;
+  top: 14px;
+  right: 18px;
+}
+
+form.buscador{
+  padding: 0;
+  text-align: center;
+}
+
+p.centrado{
+  padding: 0;
+  text-align: center;
+}
+
+img.avatar{
+  max-height: 15px
+}
+
+.foto{
+  max-height: 400px;
+  width: 100%;
+}
