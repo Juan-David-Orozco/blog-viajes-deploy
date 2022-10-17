@@ -1,18 +1,13 @@
 const { Router } = require('express')
 const router = Router()
-const { pool } = require("../../db")
+const { getPosts, getPost, getAuthors, getAuthor } = require('../../controllers/publicController')
 
-router.get('/', async (req, res) => {
-  const query = `
-      SELECT
-      titulo, resumen, fecha_hora, pseudonimo, votos
-      FROM publicaciones
-      INNER JOIN autores
-      ON publicaciones.autor_id = autores.id
-      ORDER BY fecha_hora DESC
-    `
-  const result = await pool.query(query)
-  res.json(result[0])
-})
+router.get('/publicaciones', getPosts)
+
+router.get('/publicaciones/:id', getPost)
+
+router.get('/autores', getAuthors)
+
+router.get('/autores/:id', getAuthor)
 
 module.exports = router

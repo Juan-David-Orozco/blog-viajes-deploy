@@ -12,7 +12,7 @@ app.set('views', path.join(__dirname, 'views'))
 app.use(express.static('src/public'))
 
 // Routes
-app.use('/api/public', apiRoutesPublics)
+app.use('/api/v1', apiRoutesPublics)
 app.get('/', (req, res) => res.send("Wecolme to Server"))
 
 // Start Server
