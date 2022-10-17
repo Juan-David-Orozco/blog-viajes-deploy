@@ -1,6 +1,6 @@
 const express = require("express")
 const path = require("path")
-const routesPublics = require("./routes/publics")
+const apiRoutesPublics = require("./routes/api/publics")
 
 const app = express()
 
@@ -12,7 +12,7 @@ app.set('views', path.join(__dirname, 'views'))
 app.use(express.static('src/public'))
 
 // Routes
-app.use('/public', routesPublics)
+app.use('/api/public', apiRoutesPublics)
 app.get('/', (req, res) => res.send("Wecolme to Server"))
 
 // Start Server
