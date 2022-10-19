@@ -1,7 +1,7 @@
 console.log("works")
 
-const uri = 'http://localhost:5000/api/v1/autores'
-//const uri = 'https://deploy-blog-viajes.herokuapp.com/api/v1/autores'
+//const uri = 'http://localhost:5000/api/v1/autores'
+const uri = 'https://deploy-blog-viajes.herokuapp.com/api/v1/autores'
 let autores = []
 
 const getItems = () => {
