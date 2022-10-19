@@ -1,6 +1,6 @@
 const express = require("express")
 const path = require("path")
-//const apiRoutesPublics = require("./routes/api/publics")
+const cors = require("cors")
 const apiRoutesPosts = require("./routes/api/posts")
 const apiRoutesAuthors = require("./routes/api/authors")
 
@@ -13,14 +13,15 @@ app.set('views', path.join(__dirname, 'views'))
 // Static Fields
 app.use(express.static('src/public'))
 
-// Read JSON Req Body
+// Middlewares
+app.use(cors())
 app.use(express.json())
 
 // Routes
 //app.use('/api/v1', apiRoutesPublics)
 app.use('/api/v1', apiRoutesPosts)
 app.use('/api/v1', apiRoutesAuthors)
-app.get('/', (req, res) => res.send("Wecolme to Server"))
+app.get('/api', (req, res) => res.send("Wecolme to Server"))
 
 // Start Server
 app.listen(process.env.PORT || 5000)

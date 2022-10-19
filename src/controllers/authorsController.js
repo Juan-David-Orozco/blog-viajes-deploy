@@ -2,7 +2,7 @@ const { pool } = require("../db")
 
 const getAuthors = async (req, res) => {
   try {
-    let query = `SELECT email, pseudonimo FROM autores`
+    let query = `SELECT id, email, pseudonimo FROM autores`
     const result = await pool.query(query)
     if (result[0].length == 0) return res.status(404).json({ message: "No se encontraron autores" })
     return res.status(200).json({ data: result[0] })
@@ -99,6 +99,35 @@ const deleteAuthor = async (req, res) => {
   }
 }
 
+const updateAuthor = async (req, res) => {
+  try {
+    const { email, contrasena, pseudonimo } = req.body
+    if (email === undefined || contrasena === undefined || pseudonimo === undefined) {
+      return res.status(500).json({ message: "Ingrese todos los campos" })
+    } else if (email === "" || contrasena === "" || pseudonimo === "") {
+      return res.status(500).json({ message: "Los campos no pueden ser vacios" })
+    } else {
+      let queryAuthor = `SELECT * FROM autores WHERE id = ${req.params.id}`
+      const result = await pool.query(queryAuthor)
+      if (result[0].length === 0) return res.status(404).json({ message: "Author not found" })
+      const authorId = result[0][0].id
+      let queryUpdate = `UPDATE autores SET
+        email = '${email}', contrasena = '${contrasena}', pseudonimo = '${pseudonimo}'
+        WHERE id = '${authorId}'`
+      const response = await pool.query(queryUpdate)
+      if(response[0].affectedRows === 1) {
+        let queryUpdateAuthor = `SELECT * FROM autores WHERE id = '${authorId}'`
+        const resGetAuthor = await pool.query(queryUpdateAuthor)
+        const updatedAuthor = resGetAuthor[0]
+        return res.status(200).json({ message: "Updated author successfully", data: updatedAuthor})
+      }
+    }
+  } catch (error) {
+    console.error(error)
+    return res.status(500).json({ error: "Error in updated author" })
+  }
+}
+
 module.exports = {
-  getAuthors, getAuthor, createAuthor, deleteAuthor
+  getAuthors, getAuthor, createAuthor, deleteAuthor, updateAuthor
 }

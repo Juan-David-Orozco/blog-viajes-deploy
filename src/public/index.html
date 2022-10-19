@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog Viajes - Consumo API</title>
+  <link rel="stylesheet" href="./stylesheets/main.css">
+</head>
+<body>
+
+  <div id="addForm">
+    <h3>Agregar Autor</h3>
+    <form action="javascript:void(0);" method="POST" onsubmit="addItem()">
+      <input type="text" id="add-email" placeholder="Email">
+      <input type="password" id="add-password" placeholder="*****">
+      <input type="text" id="add-username" placeholder="Username">
+      <input type="submit" value="Add">
+    </form>
+  </div>
+
+  <div id="editForm">
+    <h3>Editar Autor</h3>
+    <form action="javascript:void(0);" onsubmit="updateItem()">
+      <input type="hidden" id="edit-id">
+      <input type="text" id="edit-email">
+      <input type="password" id="edit-password">
+      <input type="text" id="edit-username">
+      <input type="submit" value="Edit">
+      <a onclick="closeInput()" aria-label="Close">&#10006;</a>
+    </form>
+  </div>
+
+  <table>
+    <thead>
+        <th>Id</th>
+        <th>Correo</th>
+        <th>Username</th>
+        <th>Editar</th>
+        <th>Eliminar</th>
+    </thead>
+    <tbody id="todos"></tbody>
+  </table>
+
+  <script src="./javascripts/script.js"></script>
+  <script type="text/javascript">
+    getItems();
+  </script>
+</body>
+</html>

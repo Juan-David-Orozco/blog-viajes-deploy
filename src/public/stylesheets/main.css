@@ -1,0 +1,35 @@
+body {
+  margin: 30px 10px;
+  background-color: #707070;
+  color: antiquewhite;
+  font-size: 24px;
+  padding: 5px;
+}
+
+table{
+  margin: 20px auto;
+  border: 2px solid white;
+  border-collapse: collapse;
+}
+
+td {
+  border: 1px solid;
+  padding: 5px 20px;
+}
+
+h3 {
+  margin: 5px auto;
+  text-align: center;
+}
+
+#editForm {
+  display: none;
+}
+
+div form {
+  text-align: center;
+}
+
+input[type='submit'], button, [aria-label] {
+  cursor: pointer;
+}
